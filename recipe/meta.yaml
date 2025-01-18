@@ -7,11 +7,11 @@ package:
   version: {{ version }}
 
 source:
-  url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/pkgversions-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/pkgversions-{{ version }}.tar.gz
   sha256: 0ff0f688a4f75d78c303c34a9712dd8eae3f3fdaac3add68d81899471f5b45c1
 
 build:
-  number: 0
+  number: 1
   noarch: python
   entry_points:
     - pkgversions=pkgversions.PkgVersions:commandHandler
@@ -20,10 +20,10 @@ build:
 requirements:
   host:
     - pip
-    - python >=3.6
+    - python {{ python_min }}
   run:
     - click
-    - python >=3.6
+    - python >={{ python_min }}
 
 test:
   imports:
@@ -34,6 +34,7 @@ test:
     - pkgversions --help
   requires:
     - pip
+    - python {{ python_min }}
 
 about:
   home: https://github.com/hasii2011/pkgversions
